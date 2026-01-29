@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:on_the_go/core/theme/app_theme.dart';
 
 class FeatureCard extends StatelessWidget {
   final String title;

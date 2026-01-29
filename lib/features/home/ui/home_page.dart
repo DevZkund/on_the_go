@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:on_the_go/features/main/ui/main_screen.dart';
 import '../../../core/responsive/responsive_layout.dart';
-import 'mobile_home_view.dart';
 import 'tablet_home_view.dart';
 
 class HomePage extends StatelessWidget {
@@ -9,7 +9,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const ResponsiveLayout(
-      mobile: MobileHomeView(),
+      mobile: MainScreen(),
       tablet: TabletHomeView(),
     );
   }

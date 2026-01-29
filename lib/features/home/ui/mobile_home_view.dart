@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:on_the_go/core/theme/app_theme.dart';
+import 'package:on_the_go/features/home/ui/drawer/home_drawer.dart';
 import 'package:on_the_go/features/home/ui/widgets/search_bar_widget.dart';
 import 'widgets/home_app_bar.dart';
 import 'widgets/home_banner_carousel.dart';
@@ -10,6 +11,7 @@ import 'widgets/section_header.dart';
 import 'widgets/category_shop_item.dart';
 import 'widgets/bulk_quote_banner.dart';
 import 'widgets/benefit_card.dart';
+import 'widgets/product_card.dart';
 
 const List<CategoryCircle> _categories = [
   CategoryCircle(
@@ -36,7 +38,7 @@ class MobileHomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.onBackground,
-      drawer: const Drawer(),
+      drawer: const HomeDrawer(),
       body: CustomScrollView(
         slivers: [
           const HomeAppBar(),
@@ -123,47 +125,84 @@ class MobileHomeView extends StatelessWidget {
                       crossAxisCount: 2,
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
+                      padding: EdgeInsets.zero,
                       crossAxisSpacing: 16,
                       mainAxisSpacing: 16,
                       childAspectRatio: 2.3,
-                      children: const [
+                      children: [
                         BenefitCard(
                           title: 'Assured 2-Hour\nSite Delivery',
-                          icon: Icon(
-                            Icons.local_shipping,
-                            color: Colors.orange,
-                            size: 32,
+                          icon: Image.asset(
+                            'assets/icons/delivery.png',
+                            width: 32,
+                            height: 32,
                           ),
                         ),
                         BenefitCard(
                           title: 'Verified Quality\nMaterials',
-                          icon: Icon(
-                            Icons.verified_user,
-                            color: Colors.amber,
-                            size: 32,
+                          icon: Image.asset(
+                            'assets/icons/verified.png',
+                            width: 32,
+                            height: 32,
                           ),
                         ),
                         BenefitCard(
                           title: 'Smart\nTracking',
-                          icon: Icon(
-                            Icons.location_on,
-                            color: Colors.black,
-                            size: 32,
+                          icon: Image.asset(
+                            'assets/icons/tracking.png',
+                            width: 32,
+                            height: 32,
                           ),
                         ),
                         BenefitCard(
                           title: 'Instant\nSupport',
-                          icon: Icon(
-                            Icons.headset_mic,
-                            color: Colors.orange,
-                            size: 32,
+                          icon: Image.asset(
+                            'assets/icons/support.png',
+                            width: 32,
+                            height: 32,
                           ),
                         ),
                       ],
                     ),
                   ),
 
-                  const SizedBox(height: 32),
+                  // Best Selling Brands
+                  SectionHeader(title: 'Best Selling Brands', onViewAll: () {}),
+                  SizedBox(
+                    height: 290,
+                    child: ListView(
+                      scrollDirection: Axis.horizontal,
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      children: const [
+                        ProductCard(
+                          category: 'CEMENT, PPC CEMENT',
+                          title: 'Shree PPC Cement',
+                          price: '₹310.00/Bag',
+                          imageUrl: 'assets/images/cement_cat.png',
+                        ),
+                        ProductCard(
+                          category: 'CEMENT, PPC CEMENT',
+                          title: 'Shree PPC Cement',
+                          price: '₹310.00/Bag',
+                          imageUrl: 'assets/images/cement_cat.png',
+                        ),
+                        ProductCard(
+                          category: 'CEMENT, PPC CEMENT',
+                          title: 'Shree PPC Cement',
+                          price: '₹310.00/Bag',
+                          imageUrl: 'assets/images/cement_cat.png',
+                        ),
+                        ProductCard(
+                          category: 'CEMENT, PPC CEMENT',
+                          title: 'Shree PPC Cement',
+                          price: '₹310.00/Bag',
+                          imageUrl: 'assets/images/cement_cat.png',
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  const SizedBox(height: 120),
                 ],
               ),
             ),

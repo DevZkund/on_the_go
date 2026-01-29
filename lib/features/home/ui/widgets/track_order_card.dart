@@ -62,7 +62,7 @@ class TrackOrderCard extends StatelessWidget {
                         Text(
                           'Track',
                           style: textTheme.bodyMedium?.copyWith(
-                            fontWeight: FontWeight.w600,
+                            fontWeight: FontWeight.w400,
                             fontSize: 14,
                             color: Colors.black,
                           ),
