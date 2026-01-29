@@ -26,7 +26,10 @@ class BulkQuoteBanner extends StatelessWidget {
               gradient: LinearGradient(
                 begin: Alignment.centerLeft,
                 end: Alignment.centerRight,
-                colors: [Colors.black.withOpacity(0.6), Colors.transparent],
+                colors: [
+                  Colors.black.withValues(alpha: 0.6),
+                  Colors.transparent,
+                ],
               ),
             ),
           ),
@@ -48,7 +51,7 @@ class BulkQuoteBanner extends StatelessWidget {
                 Text(
                   'Buy More, Save More on Your Projects',
                   style: textTheme.bodyMedium?.copyWith(
-                    color: Colors.white.withOpacity(0.9),
+                    color: Colors.white.withValues(alpha: 0.9),
                     fontSize: 12,
                   ),
                 ),

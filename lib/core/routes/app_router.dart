@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:on_the_go/features/home/ui/home_page.dart';
+import 'package:on_the_go/features/main/ui/main_screen.dart';
 import 'package:on_the_go/features/splash/ui/splash.dart';
 
 class AppRouter {
@@ -18,7 +18,7 @@ class AppRouter {
       GoRoute(
         path: homePath,
         name: "home",
-        builder: (context, state) => const HomePage(),
+        builder: (context, state) => const MainScreen(),
       ),
     ],
     errorBuilder: (context, state) =>

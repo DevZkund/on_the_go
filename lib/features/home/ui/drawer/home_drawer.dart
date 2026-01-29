@@ -34,7 +34,7 @@ class HomeDrawer extends StatelessWidget {
                       Row(
                         children: [
                           const Text(
-                            'Varun',
+                            'Kundan',
                             style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
@@ -51,7 +51,7 @@ class HomeDrawer extends StatelessWidget {
                       ),
                       const SizedBox(height: 4),
                       const Text(
-                        '+91 9465465445',
+                        '+91 999999999',
                         style: TextStyle(fontSize: 14, color: Colors.grey),
                       ),
                     ],
@@ -78,22 +78,22 @@ class HomeDrawer extends StatelessWidget {
                   onTap: () {},
                 ),
                 _buildDrawerItem(
-                  iconPath: 'assets/icons/location.svg',
+                  icon: Icons.location_on_outlined,
                   label: 'Change address',
                   onTap: () {},
                 ),
                 _buildDrawerItem(
-                  iconPath: 'assets/icons/about.svg',
+                  icon: Icons.info_outline,
                   label: 'About',
                   onTap: () {},
                 ),
                 _buildDrawerItem(
-                  iconPath: 'assets/icons/policy.svg',
+                  icon: Icons.policy_outlined,
                   label: 'Privacy Policy',
                   onTap: () {},
                 ),
                 _buildDrawerItem(
-                  icon: Icons.headset_mic_outlined, // Help icon not in assets
+                  icon: Icons.headset_mic_outlined,
                   label: 'Help',
                   onTap: () {},
                 ),
@@ -104,7 +104,7 @@ class HomeDrawer extends StatelessWidget {
                 ),
                 const Divider(),
                 _buildDrawerItem(
-                  icon: Icons.power_settings_new, // Logout icon not in assets
+                  icon: Icons.power_settings_new,
                   label: 'Logout',
                   textColor: Colors.red,
                   onTap: () {},

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:on_the_go/core/theme/app_theme.dart';
 import 'package:on_the_go/features/home/ui/drawer/home_drawer.dart';
 import 'package:on_the_go/features/home/ui/mobile_home_view.dart';
+import 'package:on_the_go/features/home/ui/tablet_home_view.dart';
+import 'package:on_the_go/core/responsive/responsive_layout.dart';
 import 'package:curved_labeled_navigation_bar/curved_navigation_bar.dart';
 import 'package:curved_labeled_navigation_bar/curved_navigation_bar_item.dart';
 
@@ -15,48 +17,40 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   int _currentIndex = 2;
 
-  final List<Widget> _pages = [
-    const PlaceholderPage(title: 'Orders'),
-    const PlaceholderPage(title: 'Cart'),
-    const MobileHomeView(),
-    const PlaceholderPage(title: 'Quotes'),
-    const PlaceholderPage(title: 'Profile'),
-  ];
+  Widget _buildPage(int index, bool isTablet) {
+    switch (index) {
+      case 0:
+        return const PlaceholderPage(title: 'Orders');
+      case 1:
+        return const PlaceholderPage(title: 'Cart');
+      case 2:
+        return isTablet ? const TabletHomeView() : const MobileHomeView();
+      case 3:
+        return const PlaceholderPage(title: 'Quotes');
+      case 4:
+        return const PlaceholderPage(title: 'Profile');
+      default:
+        return const MobileHomeView();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
+    bool isTablet = ResponsiveLayout.isTablet(context);
+
     return Scaffold(
       extendBody: true,
-      body: IndexedStack(index: _currentIndex, children: _pages),
+      drawer: const HomeDrawer(),
+      body: _buildPage(_currentIndex, isTablet),
       bottomNavigationBar: CurvedNavigationBar(
         index: _currentIndex,
-        height: 75,
+        height: isTablet ? 85 : 75,
         items: [
-          CurvedNavigationBarItem(
-            child: _buildIcon('assets/icons/orders-2.png', 0),
-            label: 'Orders',
-            labelStyle: _labelStyle(0),
-          ),
-          CurvedNavigationBarItem(
-            child: _buildIcon('assets/icons/cart.png', 1),
-            label: 'Cart',
-            labelStyle: _labelStyle(1),
-          ),
-          CurvedNavigationBarItem(
-            child: _buildIcon('assets/icons/home-2.png', 2),
-            label: 'Home',
-            labelStyle: _labelStyle(2),
-          ),
-          CurvedNavigationBarItem(
-            child: _buildIcon('assets/icons/quotes.png', 3),
-            label: 'Quotes',
-            labelStyle: _labelStyle(3),
-          ),
-          CurvedNavigationBarItem(
-            child: _buildIcon('assets/icons/profile.png', 4),
-            label: 'Profile',
-            labelStyle: _labelStyle(4),
-          ),
+          _buildNavItem('assets/icons/orders-2.png', 'Orders', 0),
+          _buildNavItem('assets/icons/cart.png', 'Cart', 1),
+          _buildNavItem('assets/icons/home-2.png', 'Home', 2),
+          _buildNavItem('assets/icons/quotes.png', 'Quotes', 3),
+          _buildNavItem('assets/icons/profile.png', 'Profile', 4),
         ],
         color: AppColors.primary,
         buttonBackgroundColor: AppColors.primaryDark,
@@ -72,21 +66,25 @@ class _MainScreenState extends State<MainScreen> {
     );
   }
 
-  Widget _buildIcon(String asset, int index) {
-    return Image.asset(
-      asset,
-      width: 26,
-      height: 26,
-      color: _currentIndex == index ? AppColors.primary : AppColors.primaryDark,
-    );
-  }
-
-  TextStyle _labelStyle(int index) {
-    return TextStyle(
-      fontSize: 12,
-      fontWeight: _currentIndex == index ? FontWeight.bold : FontWeight.normal,
-      color: AppColors.primaryDark,
-      fontFamily: 'Poppins',
+  CurvedNavigationBarItem _buildNavItem(String asset, String label, int index) {
+    return CurvedNavigationBarItem(
+      child: Image.asset(
+        asset,
+        width: 26,
+        height: 26,
+        color: _currentIndex == index
+            ? AppColors.primary
+            : AppColors.primaryDark,
+      ),
+      label: label,
+      labelStyle: TextStyle(
+        fontSize: 12,
+        fontWeight: _currentIndex == index
+            ? FontWeight.bold
+            : FontWeight.normal,
+        color: AppColors.primaryDark,
+        fontFamily: 'Poppins',
+      ),
     );
   }
 }
@@ -98,25 +96,53 @@ class PlaceholderPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isTablet = ResponsiveLayout.isTablet(context);
+
     return Scaffold(
       appBar: AppBar(title: Text(title), centerTitle: true),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              _getIconForTitle(title),
-              size: 80,
-              color: Theme.of(context).primaryColor,
-            ),
-            const SizedBox(height: 16),
-            Text(
-              '$title Page',
-              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 8),
-            const Text('This is a placeholder for future implementation.'),
-          ],
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                _getIconForTitle(title),
+                size: isTablet ? 120 : 80,
+                color: Theme.of(context).primaryColor,
+              ),
+              const SizedBox(height: 24),
+              Text(
+                '$title Page',
+                style: TextStyle(
+                  fontSize: isTablet ? 32 : 24,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 12),
+              Text(
+                'This is a placeholder for future implementation.',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: isTablet ? 18 : 14,
+                  color: Colors.grey,
+                ),
+              ),
+              if (isTablet) ...[
+                const SizedBox(height: 48),
+                ElevatedButton(
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 48,
+                      vertical: 20,
+                    ),
+                  ),
+                  child: const Text('EXPLORE FEATURES'),
+                ),
+              ],
+            ],
+          ),
         ),
       ),
     );

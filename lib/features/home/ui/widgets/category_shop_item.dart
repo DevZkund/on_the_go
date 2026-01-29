@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:on_the_go/core/theme/app_theme.dart';
 
 class CategoryShopItem extends StatelessWidget {
   final String title;
   final String imageUrl;
+  final double? width;
 
   const CategoryShopItem({
     super.key,
     required this.title,
     required this.imageUrl,
+    this.width,
   });
 
   @override
@@ -17,7 +18,7 @@ class CategoryShopItem extends StatelessWidget {
     return Column(
       children: [
         Container(
-          width: 125,
+          width: width ??125,
           height: 80,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16),

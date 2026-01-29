@@ -26,6 +26,8 @@ class BenefitCard extends StatelessWidget {
           ),
         ),
         Container(
+          width: 190,
+          height: 72,
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(12),

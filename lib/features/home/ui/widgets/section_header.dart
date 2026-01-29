@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:on_the_go/core/theme/app_theme.dart';
 
 class SectionHeader extends StatelessWidget {
   final String title;
@@ -18,8 +17,8 @@ class SectionHeader extends StatelessWidget {
           Text(
             title,
             style: textTheme.headlineLarge?.copyWith(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
+              fontSize: 14,
+              fontWeight: FontWeight.w500,
               color: const Color(0xFF263238),
             ),
           ),

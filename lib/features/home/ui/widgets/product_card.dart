@@ -7,6 +7,7 @@ class ProductCard extends StatelessWidget {
   final String price;
   final String imageUrl;
   final String discount;
+  final double? width;
 
   const ProductCard({
     super.key,
@@ -15,22 +16,23 @@ class ProductCard extends StatelessWidget {
     required this.price,
     required this.imageUrl,
     this.discount = '15%OFF',
+    this.width,
   });
 
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     return Container(
-      width: 185,
+      width: width,
       margin: const EdgeInsets.only(right: 16, bottom: 8),
       padding: const EdgeInsets.all(4),
       decoration: ShapeDecoration(
         color: Colors.white,
         shape: RoundedRectangleBorder(
-          side: BorderSide(width: 1, color: Colors.white),
+          side: const BorderSide(width: 1, color: Colors.white),
           borderRadius: BorderRadius.circular(14),
         ),
-        shadows: [
+        shadows: const [
           BoxShadow(
             color: Color(0xDDDDDDDD),
             blurRadius: 4,
@@ -39,7 +41,6 @@ class ProductCard extends StatelessWidget {
           ),
         ],
       ),
-
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -118,7 +119,8 @@ class ProductCard extends StatelessWidget {
             style: ElevatedButton.styleFrom(
               backgroundColor: AppColors.primary,
               foregroundColor: Colors.black,
-              minimumSize: const Size(double.infinity, 42),
+              minimumSize: const Size(0, 42), // Removed double.infinity width
+              padding: const EdgeInsets.symmetric(horizontal: 8),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),
               ),
@@ -128,12 +130,17 @@ class ProductCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const Icon(Icons.shopping_basket_outlined, size: 18),
-                const SizedBox(width: 8),
-                Text(
-                  'Add To Cart',
-                  style: textTheme.bodyMedium?.copyWith(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 14,
+                const SizedBox(width: 4),
+                Flexible(
+                  child: FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: Text(
+                      'Add To Cart',
+                      style: textTheme.bodyMedium?.copyWith(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 14,
+                      ),
+                    ),
                   ),
                 ),
               ],
