@@ -24,8 +24,8 @@ class TrackOrderCard extends StatelessWidget {
                 Text(
                   'Track Your Order',
                   style: textTheme.headlineLarge?.copyWith(
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
                     color: const Color(0xFF263238),
                   ),
                 ),
@@ -33,7 +33,7 @@ class TrackOrderCard extends StatelessWidget {
                 Text(
                   'Get live updates of your ongoing orders',
                   style: textTheme.bodyMedium?.copyWith(
-                    fontSize: 14,
+                    fontSize: 12,
                     color: Colors.grey[600],
                   ),
                 ),
@@ -93,8 +93,8 @@ class TrackOrderCard extends StatelessWidget {
                 Text(
                   'Track Your Order',
                   style: textTheme.headlineLarge?.copyWith(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
                     color: const Color(0xFF263238),
                   ),
                 ),

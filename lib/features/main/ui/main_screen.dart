@@ -40,28 +40,32 @@ class _MainScreenState extends State<MainScreen> {
 
     return Scaffold(
       extendBody: true,
+      backgroundColor: AppColors.background,
       drawer: const HomeDrawer(),
-      body: _buildPage(_currentIndex, isTablet),
-      bottomNavigationBar: CurvedNavigationBar(
-        index: _currentIndex,
-        height: isTablet ? 85 : 75,
-        items: [
-          _buildNavItem('assets/icons/orders-2.png', 'Orders', 0),
-          _buildNavItem('assets/icons/cart.png', 'Cart', 1),
-          _buildNavItem('assets/icons/home-2.png', 'Home', 2),
-          _buildNavItem('assets/icons/quotes.png', 'Quotes', 3),
-          _buildNavItem('assets/icons/profile.png', 'Profile', 4),
-        ],
-        color: AppColors.primary,
-        buttonBackgroundColor: AppColors.primaryDark,
-        backgroundColor: Colors.transparent,
-        animationCurve: Curves.easeInOut,
-        animationDuration: const Duration(milliseconds: 600),
-        onTap: (index) {
-          setState(() {
-            _currentIndex = index;
-          });
-        },
+      body: SafeArea(top: false, child: _buildPage(_currentIndex, isTablet)),
+      bottomNavigationBar: SafeArea(
+        top: false,
+        child: CurvedNavigationBar(
+          index: _currentIndex,
+          height: isTablet ? 85 : 75,
+          items: [
+            _buildNavItem('assets/icons/orders-2.png', 'Orders', 0),
+            _buildNavItem('assets/icons/cart.png', 'Cart', 1),
+            _buildNavItem('assets/icons/home-2.png', 'Home', 2),
+            _buildNavItem('assets/icons/quotes.png', 'Quotes', 3),
+            _buildNavItem('assets/icons/profile.png', 'Profile', 4),
+          ],
+          color: AppColors.primary,
+          buttonBackgroundColor: AppColors.primaryDark,
+          backgroundColor: Colors.transparent,
+          animationCurve: Curves.easeInOut,
+          animationDuration: const Duration(milliseconds: 600),
+          onTap: (index) {
+            setState(() {
+              _currentIndex = index;
+            });
+          },
+        ),
       ),
     );
   }
