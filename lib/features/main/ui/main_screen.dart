@@ -100,8 +100,6 @@ class PlaceholderPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isTablet = ResponsiveLayout.isTablet(context);
-
     return Scaffold(
       appBar: AppBar(title: Text(title), centerTitle: true),
       body: Center(
@@ -112,39 +110,20 @@ class PlaceholderPage extends StatelessWidget {
             children: [
               Icon(
                 _getIconForTitle(title),
-                size: isTablet ? 120 : 80,
+                size: 48,
                 color: Theme.of(context).primaryColor,
               ),
-              const SizedBox(height: 24),
+              const SizedBox(height: 16),
               Text(
                 '$title Page',
-                style: TextStyle(
-                  fontSize: isTablet ? 32 : 24,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 12),
               Text(
                 'This is a placeholder for future implementation.',
                 textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: isTablet ? 18 : 14,
-                  color: Colors.grey,
-                ),
+                style: TextStyle(fontSize: 14, color: Colors.grey),
               ),
-              if (isTablet) ...[
-                const SizedBox(height: 48),
-                ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 48,
-                      vertical: 20,
-                    ),
-                  ),
-                  child: const Text('EXPLORE FEATURES'),
-                ),
-              ],
             ],
           ),
         ),
